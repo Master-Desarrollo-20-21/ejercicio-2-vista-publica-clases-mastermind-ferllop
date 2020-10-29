@@ -1,0 +1,70 @@
+Game --> CombinationChecker
+
+@startuml
+
+title Classes - Class Diagram
+
+class Mastermind {
+    +play()
+    +{static} main()
+}
+Mastermind *-- Game
+
+class Game {
+    +start()
+    +resume()
+    +exit()
+}
+
+Game *-- SecretCombination
+Game *-- Player
+Game --> CombinationChecker
+Game ..> Console
+
+class Combination{}
+Combination *-- "4" Position
+Combination <|-- SecretCombination
+Combination <|-- ProposedCombination
+
+class Position {
+    
+}
+Position --> Color
+
+
+
+class SecretCombination {
+    +makeCombination()
+}
+
+class CombinationChecker {
+    evaluateBlacks()
+    evaluateWhites()
+}
+CombinationChecker --> SecretCombination
+CombinationChecker --> ProposedCombination
+
+class Player {
+    +proposeCombination()
+}
+Player --> "0..10"ProposedCombination
+Player ..> Console
+
+class Console {
+    +printBoard()
+    +getResume()
+    +getCombinationProposal()
+    +printProposalResult(blacks, whites)
+}
+
+Enum Color {
+    Red
+    Blue
+    Yellow
+    Green
+    Orange
+    Purple
+}
+
+
+@enduml
