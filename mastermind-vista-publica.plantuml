@@ -46,7 +46,7 @@ CombinationChecker --> ProposedCombination
 class Player {
     +proposeCombination()
 }
-Player --> "0..10"ProposedCombination
+Player *-- "0..10"ProposedCombination
 Player ..> Console
 
 class Console {
